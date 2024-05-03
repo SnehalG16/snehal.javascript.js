@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  
+   *{
+    background-color:#FFD0D0;
+    text-align: center;
+    margin-top: 27px;
+   }
+   #image{
+    height: 500px;
+    width: 50%;
+   }
+   button
+   {
+    color:#49243E;
+    font-size:40px;
+   }
+</style>
+<body>
+  <img  id="image"  src="" alt="" height="500px">
+  <br><br><br>
+    <h1 style="color: black; font-size: 40px;"></h1>
+    <button onClick="start()" style="height: 80px;">Start Timer</button>
+    <button onClick="stop()"style="height: 80px;">Stop Timer</button>
+    <br><br><br>
+    
+</body>
+</html>
+
+<script>
+    let i = 0;
+    let id  //id =variable
+    function start() {
+       id = setInterval(function () {
+        i++;
+        console.log(i);
+        document.querySelector("h1").innerText = i;
+      }, 1000);
+    }
+  
+    function stop() {
+      clearInterval(id);
+     
+    }
+
+    let currentindex =0;
+
+    let images=["https://cdn.shopify.com/s/files/1/0070/7032/files/carnegie-quote.png?v=1706739887",
+    "https://quotefancy.com/media/wallpaper/3840x2160/319465-Brennan-Manning-Quote-Suffering-failure-loneliness-sorrow.jpg",
+    "https://quotefancy.com/media/wallpaper/3840x2160/6840348-Marty-Rubin-Quote-There-is-no-higher-consciousness-There-are-just.jpg"]
+
+    setInterval(function(){
+        currentindex=(currentindex+1)% images.length;
+        document.getElementById("image").src=images[currentindex]
+    },1000);
+  </script>
