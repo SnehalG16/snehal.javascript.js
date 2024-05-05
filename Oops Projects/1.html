@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    class Animal {
+        constructor(name) {
+            this.name = name;
+        }
+        speak() {
+            console.log(`${this.name} makes a noise.`);
+        }
+    }
+
+    class Dog extends Animal {
+        speak() {
+            console.log(`${this.name} barks.`);
+        }
+    }
+
+    let dog = new Dog('Buddy');
+    dog.speak();
+
+
+    //  first i created the main class called "Animal". This class has one constructor which have argument named "name", and it has a calling method "speak()"
+    //   than extends to Animal and class named Dog. Than reuse the to the method called "speak()".At this time output:Buddy Barks     // Output: Buddy barks.
+    //  because  of the use of "extends", we can access all methods from the main class called "Animal".Here we stored value of Dog into dog. Then we called "speak()".
+
+</script>
+
+</html>

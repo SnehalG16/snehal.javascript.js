@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    class Shape {
+        constructor(color) {
+            this.color = color;
+        }
+        getColor() {
+            return this.color;
+        }
+    }
+
+    class Circle extends Shape {
+        constructor(color, radius) {
+            super(color);
+            this.radius = radius;
+        }
+    }
+
+    class ColoredCircle extends Circle {
+        constructor(color, radius) {
+            super(color, radius);
+        }
+    }
+
+    let coloredCircle = new ColoredCircle('blue', 5);
+    console.log(coloredCircle.color);
+    console.log(coloredCircle.radius);
+
+    // first i created a main class named  "Shape".It has one constructor named which have argument named "color".It has a calling method "getColor()".
+    // extends Shape and Circle to Circle and then to ColoredCircle in series.It means that ColoredCircle has all the properties of both like color and radius.
+    // ColoredCircle's value stored into  variable 'coloredCircle'. last  line of the code, printed that we want to return.
+
+
+</script>
+
+</html>

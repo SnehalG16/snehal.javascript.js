@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    class Vehicle {
+        constructor(make, model) {
+            this.make = make;
+            this.model = model;
+        }
+        getInfo() {
+            return `Make: ${this.make}, Model: ${this.model}`;
+        }
+    }
+
+    class Car extends Vehicle {
+        constructor(make, model, year) {
+            super(make, model);
+            this.year = year;
+        }
+        getInfo() {
+            return `${super.getInfo()}, Year: ${this.year}`;
+        }
+    }
+
+    let myCar = new Car('Toyota', 'Camry', 2020);
+    console.log(myCar.getInfo());
+
+    //   first i created the main class called "Vehicle". This class has one constructor which have two argument named "make" and "model".It has a calling method "getInfo()"
+    //   and than extends to "Vehicle" and class named Car. Than we added new argument named "year". Then used keyword named "super". can reuse the to the method called "getInfo()". 
+    //   access all methods from the main class called "Vehicle".Here i stored value of car with argumenrs into myCar. Then we called "getInfo()".
+
+</script>
+
+</html>
