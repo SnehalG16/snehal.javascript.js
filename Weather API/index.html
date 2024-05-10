@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box     {
+    
+       border: 1px solid black;
+       box-shadow:5px 5px 10px black;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       padding: 7px 7px;
+       height: 350px;
+       width: 400px;
+       margin: 7px 40px;
+       background-color:white;
+      
+        
+     }
+     
+     h3,p{
+        margin-top:20px;
+        
+        
+     }
+    </style>
+</head>
+<body>
+    <!--single card-->
+    <div id="container" style="display: grid;grid-template-columns: repeat(3,1fr);">
+       
+    </div>
+</body>
+</html>
+<script>
+    function fetchdata(){
+        fetch('https://reqres.in/api/users?page=2')
+        .then((res)=>res.json())
+        .then((data)=>cardList(data.data))
+        .catch((err)=>console.log(err))
+    }
+    fetchdata();
+
+    function cardList(data){
+        let store=data.map((el)=>singleCard(el.email,el.first_name,el.last_name,el.avatar))
+        document.getElementById('container').innerHTML=store.join('');
+    }
+
+    
+    function singleCard(email,first_name,last_name,avatar){
+    let card=`
+    <div class="box">
+       
+        <h2>email:${email}</h2>
+        <p>  ${first_name}</p>
+        <p> ${last_name}</p>
+        <img src="${avatar}" alt="email">
+    </div>
+    `
+
+    return card;
+   }
+
+  
+</script>
