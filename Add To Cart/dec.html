@@ -1,0 +1,133 @@
+<!DOCTYPE html1>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Description Page</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #F4F4F4;
+       }
+       .container {
+           max-width: 800px;
+           margin: 20px auto;
+           background-color: #fff;
+           padding: 20px;
+           border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       }
+       img {
+           max-width: 100%;
+           height: auto;
+           border-radius: 8px;
+           margin-left: 100px;
+           margin-bottom: 20px;
+       }
+       h1, h2 {
+           text-align: center;
+       }
+       .data {
+           margin-bottom: 20px;
+       }
+       .data label {
+           font-weight: bold;
+       }
+       .data p {
+           margin: 5px 0;
+       }
+   </style>
+</head>
+<body>
+  <h1>Description page</h1>
+   <div class="container"  style="text-align: center;">
+       <img id="image" src="https://m.media-amazon.com/images/I/61pq3ae629L._AC_UY327_FMwebp_QL65_.jpg" alt="Product Image">
+       <h1 id="title">HoloKitab</h1>
+       <div class="data">
+           <label>Category:</label>
+           <p id="category">Education</p>
+       </div>
+       <div class="data">
+           <label>Price:</label>
+           <p id="price">$45</p>
+       </div>        <div class="data">
+           <label>Founder(s):</label>
+           <p id="founder">Dipanshu Bajaj and Nikhil Miglani</p>
+       </div>
+       <div class="data">
+           <label>Description:</label>
+           <p id="description">HoloKitab is an edTech platform that enables book publishers and manufacturers from various industries to deliver Augmented Reality content to their users in a cost-effective way.</p>
+       </div>
+       <div style="display:flex;justify-content: center;">
+           <button id="addtocart" style="border: 1ps solid white;background-color: black;color: teal;padding:5px;cursor: pointer;">ADD TO Cart</button>
+       </div>
+   </div> 
+</body>
+<script>
+     const a=new URLSearchParams(window.location.search)
+   
+    window.addEventListener("load",()=>{
+
+   document.getElementById("image").src=a.get("image")
+   document.getElementById("price").innerText=a.get("price") 
+   document.getElementById("category").innerText=a.get ("category")
+   document.getElementById("title").innerText=a.get ("title")
+   document.getElementById("description").innerText=a.get ("description")
+   document.getElementById("founder").innerText=a.get ("founder")
+    })
+   
+   addtocart.addEventListener("click",()=>{
+      
+    let cardata = {
+      title:a.get("title"),
+      price:a.get("price"),
+      founder:a.get("founder"),
+      category:a.get("category"),
+      image:a.get("image"),
+      description:a.get("Description"),
+    }
+    //data post
+   fetch("https://js-project-json-server.onrender.com/cart",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(cardata)
+   })
+   .then((res)=>res.json())
+   .then((data)=>alert("DATA ADD TO CART"))
+   .catch((err)=>console.log(err))
+   })
+
+    // ######## DELTE PART ########
+  
+  
+  document.addEventListener("click", (e) => {
+    let id = e.target.dataset.id
+     if(e.target.classList.contains("card-button")){
+      DeleteFun(id)
+     }
+     
+    });
+
+
+    function DeleteFun(id){
+      fetch(`https://js-project-json-server.onrender.com/cart/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          fetchdata();
+          alert("Data Deleted ...");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+   
+
+   
+ 
+
+</script>
+</html>

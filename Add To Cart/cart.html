@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Card</title>
+<link rel="stylesheet" href="style.css">
+<style>
+ 
+</style>
+</head>
+<body>  
+    <h1 style="margin:10px 550px; color: palevioletred;">THIS IS YOUR CART PAGE</h1>
+  <div id="mainSection">
+
+  </div>
+</body>
+
+</html>
+<script>
+    function fetchdata() {
+    fetch("https://js-project-json-server.onrender.com/cart")
+      .then((res) => res.json())
+      .then((data) =>{
+        productdata=data
+        cardList(data)
+      })
+      .catch((err) => console.log(err));
+  }
+  fetchdata();
+  
+  
+  function cardList(data) {
+    let store = data.map((el) =>
+      SingleCard(el.title, el.price, el.founder, el.category, el.image, el.id ,el.description)
+    );
+    document.getElementById("mainSection").innerHTML = store.join("");
+  }
+  
+  
+  function SingleCard(title, price, founder, category, image, id , description) {
+    let card = `<div class="card" data-id=${id}>
+ 
+    <div class="card-img">
+      <img src=${image} alt=${title}>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">${title}</h4>
+      <p class="card-founder">Founder:${founder}</p>
+      <p class="card-category">${category}</p>
+      <p class="card-price">${price}</p>
+     
+      <button data-id=${id} class="card-button">Delete</button>
+    </div>
+  </div>`;
+    return card;
+  }
+
+    // ######## DELTE PART ########
+  
+  
+    document.addEventListener("click", (e) => {
+    let id = e.target.dataset.id
+     if(e.target.classList.contains("card-button")){
+      DeleteFun(id)
+     }
+     
+    });
+
+
+    function DeleteFun(id){
+      fetch(`https://js-project-json-server.onrender.com/cart/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          fetchdata();
+          alert("Data Deleted ...");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+   
+  
+</script>
