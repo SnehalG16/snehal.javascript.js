@@ -19,7 +19,7 @@
 </html>
 <script>
     function fetchdata() {
-    fetch("https://js-project-json-server.onrender.com/cart")
+    fetch("https://js-project-json-server.onrender.com/cartpage")
       .then((res) => res.json())
       .then((data) =>{
         productdata=data
@@ -69,7 +69,7 @@
 
 
     function DeleteFun(id){
-      fetch(`https://js-project-json-server.onrender.com/cart/${id}`, {
+      fetch(`https://js-project-json-server.onrender.com/cartpage/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
